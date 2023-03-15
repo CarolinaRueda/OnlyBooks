@@ -1,0 +1,89 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Sulphur+Point&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+}
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #959d95;
+  padding: 0.1rem 0.7rem;
+}
+
+.header ul {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  list-style: none;
+}
+
+.header ul li {
+  margin-left: 20px;
+}
+
+.header ul li a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #6c756b;
+  font-family: "Sulphur Point", sans-serif;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.header ul li a:hover {
+  color: #777;
+  transform: scale(0.9);
+}
+
+.header ul li a svg {
+  margin-right: 5px;
+}
+
+.dashboard {
+  height: 85.9vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-family: "Montserrat", sans-serif;
+  text-align: left;
+}
+
+.title {
+  font-style: normal;
+  font-weight: 900;
+  font-size: 60px;
+  line-height: 70px;
+  letter-spacing: 0.03em;
+  color: #de8254;
+}
+
+.text-p {
+  width: 630px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 38px;
+  line-height: 53px;
+  color: #000000;
+}
+
+.text-s {
+  color: #de8254;
+  font-weight: 600;
+}
