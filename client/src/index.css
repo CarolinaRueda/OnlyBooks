@@ -9,7 +9,11 @@
 }
 
 body {
-  height: 100vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  min-height: 100%;
+  /* width: 100%; */
 }
 
 .container {
@@ -110,6 +114,10 @@ body {
   border: 5px solid #d9d9d9;
 }
 
+.book-cont:hover {
+  transform: scale(1.05);
+}
+
 #onHover {
   display: flex;
   justify-content: center;
@@ -128,6 +136,218 @@ body {
   font-weight: bold;
   font-size: 12px;
   cursor: pointer;
+}
+
+/* Login */
+
+.cont-login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 85.9vh;
+}
+
+.login-container {
+  position: relative;
+  font-family: "Poppins";
+  width: 768px;
+  max-width: 100%;
+  min-height: 480px;
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.sing-up,
+.sing-in {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  transition: all 0.6s ease-in-out;
+}
+
+.sing-up {
+  width: 50%;
+  opacity: 0;
+  z-index: 1;
+}
+
+.sing-in {
+  width: 50%;
+  z-index: 2;
+}
+
+form {
+  background: #f3f2f2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 50px;
+  height: 100%;
+  text-align: center;
+}
+
+.login-container h1 {
+  font-weight: bold;
+  margin: 0;
+}
+
+.login-container p {
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 20px;
+  letter-spacing: 0.5px;
+  margin: 10px 0 10px;
+}
+
+.login-container input {
+  background: #cccccc;
+  height: 32px;
+  padding: 12px 15px;
+  margin: 13px 15px;
+  width: 100%;
+  border-radius: 15px;
+  border: none;
+  outline: none;
+}
+
+.inputForm::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  font-family: "Poppins", Arial, Helvetica, sans-serif;
+  opacity: 1; /* Firefox */
+}
+
+.inputForm::placeholder:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  font-family: "Poppins", Arial, Helvetica, sans-serif;
+}
+
+.inputForm::placeholder::-ms-input-placeholder {
+  /* Microsoft Edge */
+  font-family: "Poppins", Arial, Helvetica, sans-serif;
+}
+
+.login-container a {
+  color: #333;
+  font-size: 14px;
+  text-decoration: none;
+  margin: 15px;
+}
+
+.login-container button {
+  color: #fff;
+  background-color: #cccccc;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 12px 55px;
+  margin: 15px;
+  border-radius: 25px;
+  border: 1px solid #cccccc;
+  outline: none;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: transform 80ms ease-in;
+  cursor: pointer;
+}
+
+.login-container button:active {
+  transform: scale(0.9);
+}
+
+#singIn,
+#singUp {
+  background-color: transparent;
+  border: 4px solid #fff;
+}
+
+.login-container.rigth-panel-active .sing-in {
+  transform: translateX(100%);
+}
+
+.login-container.rigth-panel-active .sing-up {
+  transform: translateX(100%);
+  opacity: 1;
+  z-index: 5;
+}
+
+.overlay-container {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  transition: transform 0.6s ease-in-out;
+  z-index: 100;
+}
+
+.login-container.rigth-panel-active .overlay-container {
+  transform: translateX(-100%);
+}
+
+.overlay {
+  position: relative;
+  color: #fff;
+  background-color: #cccccc;
+  left: -100%;
+  height: 100%;
+  width: 200%;
+  background: linear-gradient(to right, #bbb, #cccccc);
+  transform: translateX(0);
+  transition: transform 0.6s ease-in-out;
+}
+
+.login-container.rigth-panel-active .overlay {
+  transform: translateX(50%);
+}
+
+.overlay-left,
+.overlay-rigth {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 40px;
+  margin-top: 10px;
+  text-align: center;
+  top: 0;
+  height: 100%;
+  width: 50%;
+  transform: translateX(0);
+  transition: transform 0.6s ease-in-out;
+}
+
+.imageSingUp {
+  width: 25rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.overlay-left {
+  transform: translateX(-20%);
+}
+
+.overlay-rigth {
+  right: 0;
+  transform: translateX(0);
+}
+
+.login-container.rigth-panel-active .overlay-left {
+  transform: translateX(0);
+}
+
+.login-container.rigth-panel-active .overlay-rigth {
+  transform: translateX(20%);
+}
+
+.social-container {
+  margin: 10px 0;
 }
 
 /* Spinner */

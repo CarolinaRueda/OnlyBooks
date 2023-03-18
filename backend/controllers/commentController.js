@@ -18,6 +18,7 @@ const setComment = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error("Please add a text");
   }
+  password2;
 
   const comment = await Comment.create({
     username: req.user.id,
