@@ -2,6 +2,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Sulphur+Point&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 
+:root {
+  --default-orage: #e79870;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -57,8 +61,8 @@ body {
   transform: scale(0.9);
 }
 
-.header ul li a svg {
-  margin-right: 5px;
+.header img {
+  margin-left: 2px;
 }
 
 /* Homepage */
@@ -120,14 +124,24 @@ body {
 
 #onHover {
   display: flex;
-  justify-content: center;
-  align-items: flex-end;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 5rem;
+}
+
+#onHover p {
+  font-weight: 800;
+  color: #e79870;
+  background-color: #cccccc;
+  height: auto;
+  font-family: "Poppins";
+  cursor: pointer;
 }
 
 #onHover button {
   width: 127px;
   height: 38px;
-  margin: 18px;
+  margin: 18px auto;
   background: #e79870;
   border: none;
   border-radius: 20px;
@@ -238,18 +252,17 @@ form {
   margin: 15px;
 }
 
-.login-container button {
+.btn {
   color: #fff;
-  background-color: #cccccc;
+  background-color: var(--default-orage);
   font-size: 12px;
   font-weight: bold;
   padding: 12px 55px;
   margin: 15px;
   border-radius: 25px;
-  border: 1px solid #cccccc;
+  border: 1px solid var(--default-orage);
   outline: none;
   letter-spacing: 1px;
-  text-transform: uppercase;
   transition: transform 80ms ease-in;
   cursor: pointer;
 }
@@ -348,6 +361,238 @@ form {
 
 .social-container {
   margin: 10px 0;
+}
+
+/* Library */
+
+.name {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-family: "Poppins";
+  font-weight: 600;
+  font-size: 30px;
+  margin: 1rem;
+  color: #454545;
+}
+
+.name img {
+  margin-left: 5px;
+}
+
+.parent {
+  display: grid;
+  width: 80%;
+  grid-template-columns: repeat(5, 0.7fr) 0.2fr;
+  grid-template-rows: 0.2fr;
+  grid-column-gap: 4px;
+  grid-row-gap: 10px;
+  align-items: center;
+  border-bottom: 2px solid #959d95;
+  margin: auto;
+  padding: 5px;
+}
+
+.parent img {
+  margin: auto;
+  height: 5rem;
+}
+
+.titleTable {
+  font-family: "Poppins";
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.infoTable {
+  font-family: "Poppins";
+}
+
+.deleteIcon {
+  height: 29px;
+  width: 29px;
+}
+
+/* Book Info */
+.book-infoCont {
+  display: flex;
+  flex-direction: row;
+  margin: 2rem 4rem;
+  justify-content: center;
+}
+
+.cover {
+  border-radius: 25px;
+}
+.genres {
+  display: flex;
+  flex-direction: row;
+  font-family: "Sulphur Point", sans-serif;
+  margin: 10px;
+  gap: 10px;
+  font-weight: 600;
+  font-size: 18px;
+  text-decoration: underline 2px solid;
+  justify-content: center;
+  color: #454545;
+}
+
+.leftSide {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.leftSide button {
+  color: #454545;
+  font-size: 18px;
+  font-family: "Sulphur Point", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.icon {
+  width: 28px;
+  height: 28px;
+}
+
+.rigthSide {
+  margin: 0 2rem;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.info h1 {
+  font-family: "Sulphur Point", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 35px;
+  line-height: 41px;
+  text-align: left;
+  letter-spacing: 0.005em;
+  color: #454545;
+}
+
+.info h3,
+.comments h3 {
+  font-family: "Sulphur Point", sans-serif;
+  font-style: normal;
+  font-weight: 550;
+  font-size: 30px;
+  line-height: 35px;
+  text-align: left;
+  color: #454545;
+}
+
+.description {
+  margin: 1rem 0;
+}
+
+.info p {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 24px;
+  color: #353535;
+  text-align: left;
+}
+
+.quote {
+  display: flex;
+  align-items: center;
+  margin: 0 0 1rem;
+}
+
+.comments {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.comments textarea {
+  width: 421px;
+  height: 55px;
+  border: 2px solid #6c756b;
+}
+
+.textButton {
+  display: flex;
+  align-items: center;
+}
+
+.textButton button {
+  background: #cccccc;
+  border: 1px solid #ccc;
+  font-family: "Poppins";
+  font-weight: 800;
+  font-size: 16px;
+  color: #353535;
+}
+.example {
+  height: 36px;
+  width: 240px;
+}
+
+/* User */
+.userSett {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  font-family: "Sulphur Point", sans-serif;
+}
+
+.userSett p {
+  font-size: 20px;
+}
+
+.userCont {
+  height: 200px;
+}
+
+.titleSett {
+  display: flex;
+  justify-content: center;
+  font-family: "Sulphur Point", sans-serif;
+  border-bottom: 2px solid #454545;
+  font-weight: 600;
+  font-size: 22px;
+  text-align: center;
+  color: #454545;
+  width: 18rem;
+}
+
+.rigth {
+  float: right;
+}
+
+.link {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  color: #de8254;
+  text-decoration: underline 2px solid #de8254;
+}
+
+.options {
+  margin: 1rem 0;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.optionsSett {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 /* Spinner */

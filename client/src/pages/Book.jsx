@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Book = ({ info }) => {
   const [hover, setHover] = useState(false);
 
+  const navigate = useNavigate();
   const onHoverIn = () => setHover(true);
   const onHoverOut = () => setHover(false);
 
@@ -18,6 +20,14 @@ const Book = ({ info }) => {
         backgroundSize: "100%",
       };
 
+  const onBookInfo = () => {
+    navigate("/book-info");
+  };
+
+  const onLibrary = () => {
+    navigate("/library");
+  };
+
   return (
     <div
       className="book-cont"
@@ -26,7 +36,12 @@ const Book = ({ info }) => {
       style={hovered}
       id={hover ? "onHover" : null}
     >
-      {hover && <button>Add to my library</button>}
+      {hover && (
+        <>
+          <p onClick={onBookInfo}>{info.title}</p>
+          <button onClick={onLibrary}>Add to my library</button>
+        </>
+      )}
     </div>
   );
 };

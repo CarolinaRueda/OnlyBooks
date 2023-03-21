@@ -14,13 +14,22 @@ const registerUser = asyncHandler(async (req, res) => {
     throw new Error("Please add all fields");
   }
 
-  //   Check if user exist
-  const userExists = await User.findOne({ email });
+  // Check if username exist
+  const usernameExists = await User.findOne({ username });
 
-  if (userExists) {
+  if (usernameExists) {
     res.status(400);
 
-    throw new Error("User already exist");
+    throw new Error("Username already exist");
+  }
+
+  //   Check if email exist
+  const emailExists = await User.findOne({ email });
+
+  if (emailExists) {
+    res.status(400);
+
+    throw new Error("Email already exist");
   }
 
   //   Hash password
@@ -37,7 +46,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
   if (user) {
     res.status(201).json({
-      _id: user.id,
+      id: user._id,
       username: user.username,
       email: user.email,
       token: generateToken(user._id),
