@@ -1,15 +1,16 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { logout, reset } from "../features/auth/authSlice";
-import { setTheme, getTheme } from "../features/theme/themeSlice";
+import { setTheme } from "../features/theme/themeSlice";
 import UserIcon from "../assets/user-icon.svg";
 import ImageUser from "../assets/Image-User.svg";
 import Spinner from "../components/Spinner";
-import { useEffect } from "react";
+import { useState } from "react";
 
 const User = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [active, setActive] = useState(false);
 
   const { theme } = useSelector((state) => state.theme);
 
@@ -19,12 +20,14 @@ const User = () => {
 
   const { username, email } = user;
 
-  useEffect(() => {
-    dispatch(getTheme());
-  }, [dispatch]);
-
   const onClick = () => {
-    dispatch(setTheme("dark"));
+    if (!active) {
+      dispatch(setTheme("dark"));
+      setActive(true);
+      return;
+    }
+    dispatch(setTheme("light"));
+    setActive(false);
   };
 
   const onLogout = () => {
@@ -78,12 +81,12 @@ const User = () => {
             <section className="optionsSett">
               <p className="bold">Dark Mode:</p>
               <div className="contChange">
-                {!setTheme === "ligth" ? <p>Off</p> : <p>On</p>}
+                {!active ? <p>Off</p> : <p>On</p>}
                 <div className="select">
                   <div
                     className="inner"
                     style={{
-                      float: setTheme === "ligth" ? "left" : "right",
+                      float: active ? "left" : "right",
                     }}
                     onClick={onClick}
                   ></div>

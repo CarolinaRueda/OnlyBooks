@@ -15,6 +15,8 @@ function App() {
 
   const { colors } = theme;
 
+  console.log(theme);
+
   return (
     <>
       <Router>

@@ -5,16 +5,16 @@ import { dark, light } from "../../utilities/Themes";
 const theme = JSON.parse(localStorage.getItem("theme"));
 
 export const getTheme = createAsyncThunk("global/getTheme", async () => {
-  return theme === "ligth" ? light : dark;
+  return theme === "light" ? light : dark;
 });
 
 // Set theme
 export const setTheme = createAsyncThunk("global/setTheme", async (theme) => {
-  return theme === "ligth" ? light : dark;
+  return theme === "light" ? light : dark;
 });
 
 const initialState = {
-  theme: dark,
+  theme: light,
   message: "",
   isLoading: false,
   isError: false,
