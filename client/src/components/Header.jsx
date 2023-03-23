@@ -9,6 +9,10 @@ import { useSelector } from "react-redux";
 
 const Header = () => {
   const user = useSelector((state) => state.auth.user);
+  const { theme } = useSelector((state) => state.theme);
+
+  const { colors } = theme;
+
   return (
     <header className="header">
       <div className="logo">
@@ -18,29 +22,29 @@ const Header = () => {
       </div>
       <ul>
         <li>
-          <Link to="/">
+          <Link to="/" style={{ color: colors.nav }}>
             Home<img src={HomeIcon} alt="home icon"></img>
           </Link>
         </li>
         <li>
-          <Link to="/books">
+          <Link to="/books" style={{ color: colors.nav }}>
             Books<img src={BooksIcon} alt="books icon"></img>
           </Link>
         </li>
         {user && (
           <li>
-            <Link to="/library">
+            <Link to="/library" style={{ color: colors.nav }}>
               Library <img src={LibraryIcon} alt="library icon"></img>
             </Link>
           </li>
         )}
         <li>
           {!user ? (
-            <Link to="/auth">
+            <Link to="/auth" style={{ color: colors.nav }}>
               Sing In<img src={LoginIcon} alt="login icon"></img>
             </Link>
           ) : (
-            <Link to="/user">
+            <Link to="/user" style={{ color: colors.nav }}>
               User<img src={UserIcon} alt="user icon"></img>
             </Link>
           )}

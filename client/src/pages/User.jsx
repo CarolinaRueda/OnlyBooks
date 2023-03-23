@@ -1,17 +1,31 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { logout, reset } from "../features/auth/authSlice";
+import { setTheme, getTheme } from "../features/theme/themeSlice";
 import UserIcon from "../assets/user-icon.svg";
 import ImageUser from "../assets/Image-User.svg";
 import Spinner from "../components/Spinner";
+import { useEffect } from "react";
 
 const User = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const { theme } = useSelector((state) => state.theme);
+
+  const { colors } = theme;
+
   const { user, isLoading } = useSelector((state) => state.auth);
 
   const { username, email } = user;
+
+  useEffect(() => {
+    dispatch(getTheme());
+  }, [dispatch]);
+
+  const onClick = () => {
+    dispatch(setTheme("dark"));
+  };
 
   const onLogout = () => {
     dispatch(logout());
@@ -24,7 +38,7 @@ const User = () => {
   }
 
   return (
-    <div>
+    <div className="userContainer" style={{ color: colors.general }}>
       <div className="name">
         <p>User's Setting</p>
         <img src={UserIcon} alt="user icon"></img>
@@ -63,10 +77,18 @@ const User = () => {
             </div>
             <section className="optionsSett">
               <p className="bold">Dark Mode:</p>
-              <section>
-                <p>Off</p>
-                <div></div>
-              </section>
+              <div className="contChange">
+                {!setTheme === "ligth" ? <p>Off</p> : <p>On</p>}
+                <div className="select">
+                  <div
+                    className="inner"
+                    style={{
+                      float: setTheme === "ligth" ? "left" : "right",
+                    }}
+                    onClick={onClick}
+                  ></div>
+                </div>
+              </div>
             </section>
           </div>
           <button onClick={onLogout} className="btn">

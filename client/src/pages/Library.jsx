@@ -1,21 +1,29 @@
+import { useSelector } from "react-redux";
 import LibraryIcon from "../assets/library-iconNav.svg";
 import TrashIcon from "../assets/trash-icon.svg";
 
 const Library = () => {
+  const { theme } = useSelector((state) => state.theme);
+
+  const { colors } = theme;
+
   return (
-    <div>
+    <div className="libraryCont">
       <div className="name">
-        <p>This is your library</p>
+        <p style={{ color: colors.general }}>This is your library</p>
         <img src={LibraryIcon} alt="library icon"></img>
       </div>
-      <div className="parent titleTable" style={{ borderBottom: "none" }}>
+      <div
+        className="parent titleTable"
+        style={{ borderBottom: "none", color: colors.general }}
+      >
         <p>Cover</p>
         <p>Title</p>
         <p>Author</p>
         <p>N° Pages</p>
         <p>Rating</p>
       </div>
-      <div className="parent infoTable">
+      <div className="parent infoTable" style={{ color: colors.pageText }}>
         <img
           src="https://images.gr-assets.com/books/1382846449l/7144.jpg"
           alt="test"

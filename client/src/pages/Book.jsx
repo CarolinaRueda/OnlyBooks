@@ -28,6 +28,10 @@ const Book = ({ info }) => {
     navigate("/library");
   };
 
+  const onTest = () => {
+    console.log(info);
+  };
+
   return (
     <div
       className="book-cont"
@@ -35,6 +39,7 @@ const Book = ({ info }) => {
       onMouseLeave={onHoverOut}
       style={hovered}
       id={hover ? "onHover" : null}
+      onClick={onTest}
     >
       {hover && (
         <>
