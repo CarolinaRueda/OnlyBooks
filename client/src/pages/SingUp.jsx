@@ -24,7 +24,6 @@ const SingUp = () => {
 
   useEffect(() => {
     if (isError) {
-      console.log(message);
       toast.error(message);
     }
 
@@ -85,7 +84,7 @@ const SingUp = () => {
           <input
             type="email"
             className="inputForm"
-            id="email"
+            id="emailSU"
             name="email"
             value={email}
             placeholder="Enter your email"
@@ -94,7 +93,7 @@ const SingUp = () => {
           <input
             type="password"
             className="inputForm"
-            id="password"
+            id="passwordSU"
             name="password"
             value={password}
             placeholder="Enter your password"

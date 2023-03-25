@@ -56,8 +56,8 @@ body {
   font-size: 30px;
 }
 
-.header ul li a:hover {
-  /* color: #777; */
+.header ul li a:hover,
+.btn:hover {
   transform: scale(0.9);
 }
 
@@ -252,6 +252,7 @@ form {
 }
 
 .btn {
+  font-family: "Sulphur Point", sans-serif;
   color: #fff;
   background-color: var(--default-orage);
   font-size: 12px;
@@ -421,30 +422,35 @@ form {
 .book-infoCont {
   display: flex;
   flex-direction: row;
-  margin: 2rem 4rem;
+  margin: 2rem 4rem 0;
+  padding: 1rem;
   justify-content: center;
 }
 
 .cover {
   border-radius: 25px;
+  width: 277px;
+  height: 398px;
+  margin-bottom: 1rem;
 }
 .genres {
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 2px 5px;
   font-family: "Sulphur Point", sans-serif;
-  margin: 10px;
-  gap: 10px;
   font-weight: 600;
   font-size: 18px;
   text-decoration: underline 2px solid;
-  justify-content: center;
-  /* color: #454545; */
 }
 
 .leftSide {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+  width: 30%;
 }
 
 .leftSide button {
@@ -464,6 +470,7 @@ form {
 
 .rigthSide {
   margin: 0 2rem;
+  width: 70%;
 }
 
 .info {
@@ -647,6 +654,19 @@ form {
   border-color: #000 transparent #555 transparent;
   border-radius: 50%;
   animation: spin 1.2s linear infinite;
+}
+
+.fade {
+  animation: fade 1s ease-in-out;
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 @keyframes spin {

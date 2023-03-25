@@ -91,6 +91,28 @@ const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "30d" });
 };
 
+// @desc    POST user library
+// @route   POST /api/users/library
+// @access  Private
+const addToLibrary = asyncHandler(async (req, res) => {
+  const { userId, bookId } = req.body;
+
+  const exist = await User.findOne({ library: { $in: [bookId] } });
+
+  if (!exist) {
+    const updated = await User.findByIdAndUpdate(
+      userId,
+      { $push: { library: bookId } },
+      { new: true }
+    );
+
+    res.json({ updated });
+  } else {
+    res.status(400);
+    throw new Error("Invalid info book");
+  }
+});
+
 module.exports = {
   registerUser,
   loginUser,

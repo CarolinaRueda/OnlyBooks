@@ -69,7 +69,7 @@ const SingIn = () => {
           <input
             type="email"
             className="inputForm"
-            id="email"
+            id="emailSI"
             name="email"
             value={email}
             placeholder="Email"
@@ -78,7 +78,7 @@ const SingIn = () => {
           <input
             type="password"
             className="inputForm"
-            id="password"
+            id="passwordSI"
             name="password"
             value={password}
             placeholder="Password"

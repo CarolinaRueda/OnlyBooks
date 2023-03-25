@@ -21,15 +21,11 @@ const Book = ({ info }) => {
       };
 
   const onBookInfo = () => {
-    navigate("/book-info");
+    navigate(`/book-info/${info.id}`);
   };
 
   const onLibrary = () => {
     navigate("/library");
-  };
-
-  const onTest = () => {
-    console.log(info);
   };
 
   return (
@@ -39,7 +35,6 @@ const Book = ({ info }) => {
       onMouseLeave={onHoverOut}
       style={hovered}
       id={hover ? "onHover" : null}
-      onClick={onTest}
     >
       {hover && (
         <>

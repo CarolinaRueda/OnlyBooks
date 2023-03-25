@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import LibraryIcon from "../assets/library-iconNav.svg";
+import LibraryIconDM from "../assets/library-iconNavDM.svg";
 import TrashIcon from "../assets/trash-icon.svg";
 
 const Library = () => {
@@ -11,7 +12,10 @@ const Library = () => {
     <div className="libraryCont">
       <div className="name">
         <p style={{ color: colors.general }}>This is your library</p>
-        <img src={LibraryIcon} alt="library icon"></img>
+        <img
+          src={theme.mode === "light" ? LibraryIcon : LibraryIconDM}
+          alt="library icon"
+        ></img>
       </div>
       <div
         className="parent titleTable"

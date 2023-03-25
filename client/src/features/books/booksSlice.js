@@ -4,6 +4,7 @@ import booksService from "./booksService";
 const initialState = {
   books: [],
   booksOnScreen: [],
+  bookInfo: null,
   isError: false,
   isSucces: false,
   isLoading: false,
@@ -27,6 +28,23 @@ export const loadBooks = createAsyncThunk(
   }
 );
 
+// Load books
+export const loadBookById = createAsyncThunk(
+  "books/loadBookById",
+  async (bookId, thunkAPI) => {
+    try {
+      return await booksService.loadBookById(bookId);
+    } catch (err) {
+      const message =
+        (err.response && err.response.data && err.response.data.message) ||
+        err.message ||
+        err.toString();
+
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 export const bookSlice = createSlice({
   name: "books",
   initialState,
@@ -37,6 +55,9 @@ export const bookSlice = createSlice({
         ...state.books.slice(0, 10),
       ];
       state.books = state.books.slice(10);
+    },
+    resetBookInfo: (state, _) => {
+      state.bookInfo = null;
     },
   },
   extraReducers: (builder) => {
@@ -55,9 +76,22 @@ export const bookSlice = createSlice({
         state.isLoading = false;
         state.isSucces = true;
         state.message = action.payload;
+      })
+      .addCase(loadBookById.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(loadBookById.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSucces = true;
+        state.bookInfo = action.payload;
+      })
+      .addCase(loadBookById.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isSucces = true;
+        state.message = action.payload;
       });
   },
 });
 
-export const { loadMoreBooks } = bookSlice.actions;
+export const { loadMoreBooks, resetBookInfo } = bookSlice.actions;
 export default bookSlice.reducer;

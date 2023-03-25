@@ -15,8 +15,6 @@ function App() {
 
   const { colors } = theme;
 
-  console.log(theme);
-
   return (
     <>
       <Router>
@@ -31,7 +29,7 @@ function App() {
             <Route path="/library" element={<Library />} />
             <Route path="/auth" element={<AuthWrapper />} />
             <Route path="/user" element={<User />} />
-            <Route path="/book-info" element={<BookInfo />} />
+            <Route path="/book-info/:id" element={<BookInfo />} />
           </Routes>
         </div>
       </Router>

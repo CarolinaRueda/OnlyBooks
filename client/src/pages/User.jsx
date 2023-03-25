@@ -1,16 +1,16 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { logout, reset } from "../features/auth/authSlice";
-import { setTheme } from "../features/theme/themeSlice";
 import UserIcon from "../assets/user-icon.svg";
+import UserIconDM from "../assets/user-iconDM.svg";
 import ImageUser from "../assets/Image-User.svg";
 import Spinner from "../components/Spinner";
-import { useState } from "react";
+import { resetTheme, updateTheme } from "../features/theme/themeSlice";
+import { dark, light } from "../utilities/Themes";
 
 const User = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [active, setActive] = useState(false);
 
   const { theme } = useSelector((state) => state.theme);
 
@@ -21,18 +21,13 @@ const User = () => {
   const { username, email } = user;
 
   const onClick = () => {
-    if (!active) {
-      dispatch(setTheme("dark"));
-      setActive(true);
-      return;
-    }
-    dispatch(setTheme("light"));
-    setActive(false);
+    dispatch(updateTheme(theme.mode !== "light" ? light : dark));
   };
 
   const onLogout = () => {
     dispatch(logout());
     dispatch(reset());
+    dispatch(resetTheme());
     navigate("/");
   };
 
@@ -44,7 +39,10 @@ const User = () => {
     <div className="userContainer" style={{ color: colors.general }}>
       <div className="name">
         <p>User's Setting</p>
-        <img src={UserIcon} alt="user icon"></img>
+        <img
+          src={theme.mode === "light" ? UserIcon : UserIconDM}
+          alt="user icon"
+        ></img>
       </div>
       <div className="userSett">
         <div className="imageCont">
@@ -81,12 +79,12 @@ const User = () => {
             <section className="optionsSett">
               <p className="bold">Dark Mode:</p>
               <div className="contChange">
-                {!active ? <p>Off</p> : <p>On</p>}
+                {theme.mode === "light" ? <p>Off</p> : <p>On</p>}
                 <div className="select">
                   <div
                     className="inner"
                     style={{
-                      float: active ? "left" : "right",
+                      float: theme.mode === "light" ? "right" : "left",
                     }}
                     onClick={onClick}
                   ></div>
@@ -95,7 +93,7 @@ const User = () => {
             </section>
           </div>
           <button onClick={onLogout} className="btn">
-            Log Out
+            LOG OUT
           </button>
         </div>
       </div>

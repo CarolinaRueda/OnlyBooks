@@ -1,21 +1,39 @@
 import LibraryIcon from "../assets/library-icon.svg";
 import example from "../assets/examplesvg.svg";
 import quoteUp from "../assets/quote-up.svg";
+import quoteUpDM from "../assets/quote-upDM.svg";
 import quoteDown from "../assets/quote-down.svg";
+import quoteDownDM from "../assets/quote-downDM.svg";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { loadBookById, resetBookInfo } from "../features/books/booksSlice";
+import { useEffect } from "react";
+import Spinner from "../components/Spinner";
 
 const BookInfo = () => {
-  return (
-    <div className="book-infoCont">
-      <div className="leftSide">
-        <img
-          className="cover"
-          src="https://images.gr-assets.com/books/1474154022l/3.jpg"
-          alt="Harry Potter and the Sorcerer's Stone"
-        />
+  const { id } = useParams();
+  const dispatch = useDispatch();
+  const { bookInfo, isLoading } = useSelector((state) => state.books);
+  const { theme } = useSelector((state) => state.theme);
+
+  const { colors } = theme;
+
+  useEffect(() => {
+    dispatch(loadBookById(id));
+    return () => {
+      dispatch(resetBookInfo());
+    };
+  }, [dispatch, id]);
+
+  if (isLoading) return <Spinner />;
+  return bookInfo ? (
+    <div className="book-infoCont fade">
+      <div className="leftSide" style={{ color: colors.general }}>
+        <img className="cover" src={bookInfo.image_url} alt={bookInfo.title} />
         <div className="genres">
-          <p>Fantasy</p>
-          <p>Young Adult</p>
-          <p>Fiction</p>
+          {bookInfo.genre_list.split(",").map((genre, idx) => (
+            <p key={idx}>{genre}</p>
+          ))}
         </div>
         <button className="btn">
           Add Library
@@ -23,35 +41,52 @@ const BookInfo = () => {
         </button>
       </div>
       <div className="rigthSide">
-        <div className="info">
-          <h1>Harry Potter and the Sorcerer's Stone</h1>
-          <h3>J.K. Rowling</h3>
+        <div className="info" style={{ color: colors.general }}>
+          <h1>{bookInfo.title}</h1>
+          <h3>{bookInfo.authors}</h3>
           <img src={example} alt="example" className="example" />
-          <p className="description">
-            Harry Potter's life is miserable. His parents are dead and he's
-            stuck with his heartless relatives, who force him to live in a tiny
-            closet under the stairs. But his fortune changes when he receives a
-            letter that tells him the truth about himself: he's a wizard. A
-            mysterious visitor rescues him from his relatives and takes him to
-            his new home, Hogwarts School of Witchcraft and Wizardry.After a
-            lifetime of bottling up his magical powers, Harry finally feels like
-            a normal kid.
+          <p
+            className="description"
+            style={{ color: colors.description, fontWeight: "lighter" }}
+          >
+            {bookInfo.description}
           </p>
-          <p className="quote">
-            <img src={quoteUp} alt="quote up" />
-            You don't forget the face of the person who was your last hope.
-            <img src={quoteDown} alt="quote down" />
+          <p className="quote" style={{ color: colors.description }}>
+            <img
+              src={theme.mode === "light" ? quoteUp : quoteUpDM}
+              alt="quote up"
+            />
+            {bookInfo.Quote1}
+            <img
+              src={theme.mode === "light" ? quoteDown : quoteDownDM}
+              alt="quote down"
+            />
           </p>
         </div>
-        <div className="comments">
+        <div className="comments" style={{ color: colors.general }}>
           <h3>Comment's</h3>
           <div className="textButton">
-            <textarea name="" id="" cols="30" rows="10"></textarea>
-            <button className="btn">POST</button>
+            <textarea
+              name=""
+              id=""
+              cols="30"
+              rows="10"
+              style={{
+                backgroundColor: colors.background,
+              }}
+            ></textarea>
+            <button
+              className="btn"
+              style={{ backgroundColor: "#e79870", borderColor: "#e79870" }}
+            >
+              POST
+            </button>
           </div>
         </div>
       </div>
     </div>
+  ) : (
+    <p>unable to load book info please try again</p>
   );
 };
 
